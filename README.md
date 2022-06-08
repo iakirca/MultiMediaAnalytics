@@ -8,6 +8,6 @@ This repo contains my first assignment for the course Multimedia Analytics. I ha
 
 1) To install the requirements (python 3.8), run ```bash pip install -r requirements.txt``` in your terminal from the folder MultimediaAnalytics-Framework-2022.
 2) Run ```bash docker-compose build; docker-compose up``` in your terminal from the directory that is 1 up from the MultimediaAnalytics-Framework-2022 directory to build and start the docker container.
-3) Navigate to localhost:5000 to access the app
+3) Navigate to localhost:5000 to access the app.
 
 ---
