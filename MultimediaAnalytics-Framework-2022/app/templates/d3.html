@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}D3 Visualization{% endblock %}
+{% block body %}
+<script type="text/javascript">
+	d3.selectAll(".nav-item").classed("active", false);
+	d3.select("#nav-link-d3").classed("active", true);
+</script>
+
+<link href="../static/css/tooltip.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../static/js/tooltip.js"></script>
+
+<H2 class="mt-3">Amsterdam Rental Information</H2>
+
+<!-- <form action="/d3"> -->
+<select id="area_name" name="area_name" onchange="updateArea(this); drawMap(mapData,this.value)">
+	{% for area_name in area_names %}
+	{% if area_name == selected_area_name %}
+	<option selected value="{{ area_name }}">{{  area_name }}</option> 
+	{% else %} 
+	<option value="{{ area_name }}">{{ area_name }}</option> 
+	{% endif %}
+	{% endfor %}
+</select>
+	<!-- <input type="submit"> -->
+<!-- </form> -->
+<div style = "display:flex;">
+<!-- <div  id="barchart">
+</div> -->
+<div id="piechart"></div>
+<div id="empty_space"></div>
+<div id="map"></div>
+</div>
+<link rel="stylesheet" type="text/css" href="../static/css/barchart.css">
+<script type="text/javascript" src="../static/js/piechart.js"></script>
+<script type="text/javascript" src="../static/js/map.js"></script>
+<script type="text/javascript">
+	///////////// GLOBAL VARS /////////////		
+	var plot_data;
+	var meta_data = {{ meta_data |safe }};
+	var x_variables = {{ x_variables |safe}};
+	var selected_area = {{ selected_area_name |tojson }};
+
+	var width = 1000;
+	var height = 700;
+	var MOUSEOVER = false;
+
+	var mapWidth = 750;
+	var mapHeight = 750;
+
+	// Make piechart container
+	var svgContainer1 = d3.select("#piechart")
+				.append("svg")
+					.attr("width", 750)
+					.attr("height", 750)
+
+	// Leave some space between piechart and map
+	var svgContainer2 = d3.select("#empty_space")
+				.append("svg")
+					.attr("width", 150)
+					.attr("height", 150)
+
+	// Make map container
+	var mapContainer = d3.select("#map").append("svg")
+					.attr("height", mapHeight)
+					.attr("width", mapWidth);
+	
+	var mapData;
+    d3.json("d3_map_data").then( function(data) {
+        mapData= data;
+		drawMap (mapData,d3.select ("#area_name").property ("value"))
+    });
+
+	updatePlot();
+</script>
+
+{% endblock %}
