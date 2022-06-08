@@ -1,4 +1,4 @@
-# Multimedia Analytics Assignment 1#
+# Multimedia Analytics Assignment 1 #
 
 This repo contains my first assignment for the course Multimedia Analytics. I have chosen the visualization using html/js/d3.
 
