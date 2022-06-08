@@ -11,3 +11,6 @@ This repo contains my first assignment for the course Multimedia Analytics. I ha
 3) Navigate to localhost:5000 to access the app.
 
 ---
+
+### Preview of the visualization using html/js/d3 ###
+![](https://github.com/iakirca/MultiMediaAnalytics/blob/main/mma1.gif)
